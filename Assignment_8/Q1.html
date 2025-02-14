@@ -1,1 +1,33 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Table Generator</title>
+</head>
+<body>
+    <p>Enter the number of columns</p>
+    <input type="text" id="Rows">
+    <p>Enter the number of rows</p>
+    <input type="text" id="Columns">
+    <button id="createTable">Generate Table</button>
+    <div>
+        <table id="table1" border="1" cellpadding="11" cellspacing="5"></table>
+    </div>
+    <script>
+        let table=document.getElementById("table1");
+        document.getElementById("createTable").onclick= function generateTable(){
+            let rows=parseInt(document.getElementById("Rows").value);
+            let columns=parseInt(document.getElementById("Columns").value);
+            for(let i=0;i<rows;i++){
+                let row=table.insertRow();
+                row.style="border: 2px solid blue";
+                for(let j=0; j<columns; j++){
+                    let cell=row.insertCell();
+                    cell.textContent="Row: "+(i+1)+" Col: "+(j+1);
+                }
+            }
+        }
+    </script>
+</body>
+</html>
