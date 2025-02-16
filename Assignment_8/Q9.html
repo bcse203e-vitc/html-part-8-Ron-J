@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Countdown Timer</title>
+</head>
+<body>
+  <input type="number" id="timeInput" placeholder="Enter time in seconds">
+  <button id="startTimer">Start</button>
+  <p id="timerDisplay"></p>
+
+  <script>
+    const timeInput = document.getElementById('timeInput');
+    const timerDisplay = document.getElementById('timerDisplay');
+    let countdown;
+
+    document.getElementById('startTimer').addEventListener('click', () => {
+      let timeLeft = parseInt(timeInput.value);
+
+      if (isNaN(timeLeft) || timeLeft <= 0) {
+        alert('Please enter a valid time.');
+        return;
+      }
+
+      clearInterval(countdown);
+      countdown = setInterval(() => {
+        if (timeLeft <= 0) {
+          clearInterval(countdown);
+          timerDisplay.textContent = 'Time\'s up!';
+          new Audio('beep.mp3').play(); // Bonus: Play sound
+        } else {
+          timerDisplay.textContent = timeLeft;
+          timeLeft--;
+        }
+      }, 1000);
+    });
+  </script>
+</body>
+</html>
