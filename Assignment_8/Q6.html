@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Clock</title>
+</head>
+<body>
+  <h1 id="clock">00:00:00</h1>
+  <button id="toggleFormat">Toggle 12/24 Hour</button>
+
+  <script>
+    const clock = document.getElementById('clock');
+    const toggleFormat = document.getElementById('toggleFormat');
+    let is24Hour = true;
+
+    function updateClock() {
+      const now = new Date();
+      let hours = now.getHours();
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+
+      if (!is24Hour) {
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12 || 12;
+        clock.textContent = `${hours}:${minutes}:${seconds} ${ampm}`;
+      } else {
+        clock.textContent = `${hours}:${minutes}:${seconds}`;
+      }
+    }
+
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    toggleFormat.addEventListener('click', () => {
+      is24Hour = !is24Hour;
+    });
+  </script>
+</body>
+</html>
