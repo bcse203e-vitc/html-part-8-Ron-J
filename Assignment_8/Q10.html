@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Font Size Adjuster</title>
+  <style>
+    #text { font-size: 16px; }
+  </style>
+</head>
+<body>
+  <p id="text">This is a sample text.</p>
+  <button id="increaseFont">Increase Font Size</button>
+  <button id="decreaseFont">Decrease Font Size</button>
+
+  <script>
+    const text = document.getElementById('text');
+    const increaseFont = document.getElementById('increaseFont');
+    const decreaseFont = document.getElementById('decreaseFont');
+
+    increaseFont.addEventListener('click', () => {
+      const currentSize = parseInt(window.getComputedStyle(text).fontSize);
+      text.style.fontSize = `${currentSize + 2}px`;
+    });
+
+    decreaseFont.addEventListener('click', () => {
+      const currentSize = parseInt(window.getComputedStyle(text).fontSize);
+      text.style.fontSize = `${currentSize - 2}px`;
+    });
+  </script>
+</body>
+</html>
